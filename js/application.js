@@ -1,8 +1,10 @@
 $(document).ready(function () {
 
 
-  $('body').on('input','.shopping input', function (){
-    var totalAmount = 0;
+var totalAmount = 0;
+
+  $('body').on('input','.shopping input', function updatePrice(){
+
 
 
     var productCount = $(this).val();
@@ -22,11 +24,15 @@ $(document).ready(function () {
   });
 
 
-  $(document).on('click', '.btn.remove', function (event){
+  $(document).on('click', '.btn.remove', function (event,){
 
     $(this).parent().parent().remove();
 
+   updatePrice();
 
+   $('#totalprice').html("$"+totalAmount+".00");
+   
+   console.log(totalAmount);
   });
 
 
