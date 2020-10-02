@@ -1,38 +1,28 @@
 $(document).ready(function () {
 
-
-var totalAmount = 0;
-
-  $('body').on('input','.shopping input', function updatePrice(){
-
-
-
+  var updatePrice = function () {
+    var totalAmount = 0;
+    
     var productCount = $(this).val();
     var productPrice = parseFloat($(this).parent().prev().text().substring(1,3));
     var subTotal = productPrice * productCount;
     $(this).parent().next().next().html("$"+subTotal+".00");
 
-
     $(".total").each(function (index, element) {
       if (/\d/.test($(this).text())) {
         totalAmount += parseFloat($(this).text().substring(1));
       }
-
     });
 
     $('#totalprice').html("$"+totalAmount+".00");
-  });
-
-
+  }
+  
+  $('body').on('input','.shopping input', updatePrice);
+  
   $(document).on('click', '.btn.remove', function (event,){
-
     $(this).parent().parent().remove();
-
-   updatePrice();
-
-   $('#totalprice').html("$"+totalAmount+".00");
-   
-   console.log(totalAmount);
+    updatePrice();
+    console.log(totalAmount);
   });
 
 
