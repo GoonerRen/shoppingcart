@@ -2,7 +2,7 @@ $(document).ready(function () {
 
   var updatePrice = function () {
     var totalAmount = 0;
-    
+
     var productCount = $(this).val();
     var productPrice = parseFloat($(this).parent().prev().text().substring(1,3));
     var subTotal = productPrice * productCount;
@@ -15,15 +15,15 @@ $(document).ready(function () {
     });
 
     $('#totalprice').html("$"+totalAmount+".00");
-  }
-  
+  };
+
   $('body').on('input','.shopping input', updatePrice);
-  
-  $(document).on('click', '.btn.remove', function (event,){
+
+  $(document).on('click', '.btn.remove', function (event){
     $(this).parent().parent().remove();
-    updatePrice();
-    console.log(totalAmount);
   });
+
+  $(document).on('click', '.btn.remove', updatePrice);
 
 
 
